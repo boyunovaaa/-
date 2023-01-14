@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.png">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
@@ -25,9 +25,6 @@
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
-
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=949c419f-7cb8-41ba-9e1b-e7c3f69e0086&lang=ru_RU" type="text/javascript">
-    </script>
 </head>
 
 <body>
@@ -35,7 +32,6 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-    <!-- header_start  -->
     <header>
         <div class="header-area ">
             <div id="sticky-header" class="main-header-area">
@@ -61,6 +57,7 @@
                                             </ul>
                                         </li>
                                         <li><a href="#contacts">Контакты</a></li>
+                                        <li><a href="autorization.php">Авторизация</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -74,100 +71,12 @@
         </div>
     </header>
 
-    <!-- header_start  -->
+    <form action="" method="POST">
+        <input name="login">
+        <input name="password" type="password">
+        <input type="submit">
+    </form>
 
-    <!-- bradcam_area_start -->
-    <div class="bradcam_area breadcam_bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="bradcam_text text-center">
-                        <h3>Карта Московского зоопарка</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- bradcam_area_end -->
-
-    
-
-    <div class="col-lg-12">
-    <!-- ?php
-    include "dbconnect.php";
-    $sql = mysqli_query($conn, 'SELECT DISTINCT Coo FROM `zoo`');
-
-    while ($result = mysqli_fetch_array($sql)){
-        $arr[] = $result["Coo"];
-
-    }
-
-    print_r($arr);
-    ? -->
-        <div id="map" class="map" style="height: 800px">
-            <script type="text/javascript">
-                // Функция ymaps.ready() будет вызвана, когда
-                // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
-                ymaps.ready(init);
-                function init(){
-                    // Создание карты.
-                    var myMap = new ymaps.Map("map", {
-                        // Координаты центра карты.
-                        // Порядок по умолчанию: «широта, долгота».
-                        // Чтобы не определять координаты центра карты вручную,
-                        // воспользуйтесь инструментом Определение координат.
-                        center: [55.76323808, 37.58051340],
-                        // Уровень масштабирования. Допустимые значения:
-                        // от 0 (весь мир) до 19.
-                        zoom: 16
-                    });
-                    
-                    <?php
-                    $arr1 = [];
-                    $arr2 = [];
-                    include "dbconnect.php";
-                    $sql1 = mysqli_query($conn, 'SELECT DISTINCT Coo1, Coo2 FROM `zoo3`;');
-                    while ($result1 = mysqli_fetch_array($sql1)){
-                        $arr1[] = (float)$result1["Coo1"];
-                        $arr2[] = (float)$result1["Coo2"];
-                    }
-                    ?>
-
-                    var coo1 =JSON.parse('<?=json_encode($arr1)?>');
-
-                    var coo2 =JSON.parse('<?=json_encode($arr2)?>');
-
-                    var coords=[], i, j;
-                    for (i=0; i<42; i++){
-                        coords.push(i);
-                        coords[i] = [];
-                    for (j=0; j<1; j++){
-                        coords[i].push(coo1[i], coo2[i]);
-                    }
-                    }
-
-
-                    var myGeoObjects = [];
-
-                    for (var i = 0; i<coords.length; i++) {
-                    myGeoObjects[i] = new ymaps.GeoObject({
-                        geometry: {
-                        type: "Point",
-                        coordinates: coords[i]
-                        }
-                    });
-                    }
-
-                    var myClusterer = new ymaps.Clusterer();
-                    myClusterer.add(myGeoObjects);
-                    myMap.geoObjects.add(myClusterer);
-                    
-                }
-            </script>
-        </div>
-    </div>
-    
-    <!-- footer_start  -->
     <footer class="footer" id="contacts">
         <div class="footer_top">
             <div class="container">
@@ -259,56 +168,6 @@
             </div>
         </div>
     </footer>
-    <!-- footer_end  -->
-
-
-    <!-- JS here -->
-    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/isotope.pkgd.min.js"></script>
-    <script src="js/ajax-form.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script src="js/scrollIt.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/nice-select.min.js"></script>
-    <script src="js/jquery.slicknav.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/gijgo.min.js"></script>
-
-    <!--contact js-->
-    <script src="js/contact.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.form.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/mail-script.js"></script>
-
-    <script src="js/main.js"></script>
-    <script>
-        $('#datepicker').datepicker({
-            iconsLibrary: 'fontawesome',
-            disableDaysOfWeek: [0, 0],
-        //     icons: {
-        //      rightIcon: '<span class="fa fa-caret-down"></span>'
-        //  }
-        });
-        $('#datepicker2').datepicker({
-            iconsLibrary: 'fontawesome',
-            icons: {
-             rightIcon: '<span class="fa fa-caret-down"></span>'
-         }
-
-        });
-        var timepicker = $('#timepicker').timepicker({
-         format: 'HH.MM'
-     });
-    </script>
-</body>
+    </body>
 
 </html>

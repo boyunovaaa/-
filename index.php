@@ -39,7 +39,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-3">
                             <div class="logo">
-                                <a href="index.html">
+                                <a href="index.php">
                                     <img src="img/logo.png" alt="" height="50px">
                                 </a>
                             </div>
@@ -48,7 +48,7 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a  href="index.html">Главная</a></li>
+                                        <li><a  href="index.php">Главная</a></li>
                                         <li><a href="about.html">О зоопарке</a></li>
                                         <li><a href="#">Животные <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
@@ -57,6 +57,7 @@
                                             </ul>
                                         </li>
                                         <li><a href="#contacts">Контакты</a></li>
+                                        <li><a href="autorization.php">Авторизация</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -285,26 +286,26 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <h3 class="footer_title">Обратная связь</h3>
-                        <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                        <form class="form-contact contact_form" action="" method="post" id="contactForm" novalidate="novalidate">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input class="form-control valid" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="ФИО">
+                                        <input class="form-control valid" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите ФИО'" placeholder="ФИО">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input class="form-control valid" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Email">
+                                        <input class="form-control valid" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите email'" placeholder="Email">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input class="form-control" name="subject" id="subject" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" placeholder="Тема">
+                                        <input class="form-control" name="subject" id="subject" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите тему'" placeholder="Тема">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder="Сообщение"></textarea>
+                                        <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Напишите сообщение'" placeholder="Сообщение"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -312,6 +313,15 @@
                                 <button type="submit" class="button button-contactForm boxed-btn">Отправить</button>
                             </div>
                         </form>
+                        <?php
+                        
+                        include "dbconnect.php";
+                        if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message'])){
+                            $query = "INSERT INTO `messages` (`fio`, `email`, `subject`, `message`) VALUES ('{$_POST['name']}', '{$_POST['email']}', '{$_POST['subject']}', '{$_POST['message']}')"; 
+                    
+                            $result = mysqli_query($conn, $query);
+                        }
+                        ?>
                     </div>
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
@@ -404,31 +414,31 @@
 
 
     <!-- JS here -->
-    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- script src="js/vendor/modernizr-3.5.0.min.js"></script -->
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="js/popper.min.js"></script>
+    <!-- script src="js/popper.min.js"></script -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/isotope.pkgd.min.js"></script>
-    <script src="js/ajax-form.js"></script>
+    <!-- script src="js/ajax-form.js"></script -->
     <script src="js/waypoints.min.js"></script>
     <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script src="js/scrollIt.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
+    <!-- script src="js/imagesloaded.pkgd.min.js"></script -->
+    <!-- script src="js/scrollIt.js"></script -->
+    <!-- script src="js/jquery.scrollUp.min.js"></script -->
     <script src="js/wow.min.js"></script>
-    <script src="js/nice-select.min.js"></script>
+    <!-- script src="js/nice-select.min.js"></script -->
     <script src="js/jquery.slicknav.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/gijgo.min.js"></script>
+    <!-- script src="js/jquery.magnific-popup.min.js"></script -->
+    <!-- script src="js/plugins.js"></script -->
+    <!-- script src="js/gijgo.min.js"></script -->
 
     <!--contact js-->
-    <script src="js/contact.js"></script>
+    <!-- script src="js/contact.js"></script>
     <script src="js/jquery.ajaxchimp.min.js"></script>
     <script src="js/jquery.form.js"></script>
     <script src="js/jquery.validate.min.js"></script>
-    <script src="js/mail-script.js"></script>
+    <script src="js/mail-script.js"></script -->
 
     <script src="js/main.js"></script>
 </body>
