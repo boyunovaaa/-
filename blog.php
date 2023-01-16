@@ -92,7 +92,24 @@
     <div class="container3">
         <div class="row">
             <div class="col-lg-12">
-            <br><h3>Выберите павильон</h3>
+            <?php 
+            include "dbconnect.php"; ?>
+            <section class="catalog">
+                <div class="container2">
+                    <ul class="products-list">
+                        <?php 
+                        if (isset($_GET['loc'])){
+                            $sql = mysqli_query($conn, 'SELECT zoo2.Kind, zoo3.CageLocation, zoo3.Coo1, zoo3.Coo2 FROM zoo2 JOIN zoo3 ON zoo2.NoCageLocation=zoo3.id WHERE zoo3.CageLocation="'.$_GET['loc'].'";');
+                            while ($result = mysqli_fetch_array($sql)) {
+                                echo '<li>'.'<a class="product-card" href="contact.php?coo1='.$result['Coo1'].'&coo2='.$result['Coo2'].'">'.'<img src="img/animals/'.$result['Kind'].'.jpg" width="156" height="180">'.'<h3>'.$result['Kind'].'</h3>'.'<span class="price">'.$result['CageLocation'].'</span>'.'</a>'.'</li>';
+                            }
+                        }?>
+                    </ul>
+                </div>
+            </section> 
+            <?php
+            if (!isset($_GET['loc'])){ ?>
+                <br><h3>Выберите павильон</h3>
                 <form method="POST" action="">
                     <?php include "animals.php";
                     ?>
@@ -108,7 +125,7 @@
                                 }
                                 else{$sql = mysqli_query($conn, 'SELECT zoo2.Kind, zoo3.CageLocation, zoo3.Coo1, zoo3.Coo2 FROM zoo2 JOIN zoo3 ON zoo2.NoCageLocation=zoo3.id AND zoo3.id='.$op.' ORDER BY zoo2.Kind;');
                                 while ($result = mysqli_fetch_array($sql)) {
-                                    echo '<li>'.'<a class="product-card" href="contact.php?coo1='.$result['Coo1'].'coo2='.$result['Coo2'].'">'.'<img src="img/animals/'.$result['Kind'].'.jpg" width="156" height="180">'.'<h3>'.$result['Kind'].'</h3>'.'<span class="price">'.$result['CageLocation'].'</span>'.'</a>'.'</li>';
+                                    echo '<li>'.'<a class="product-card" href="contact.php?coo1='.$result['Coo1'].'&coo2='.$result['Coo2'].'">'.'<img src="img/animals/'.$result['Kind'].'.jpg" width="156" height="180">'.'<h3>'.$result['Kind'].'</h3>'.'<span class="price">'.$result['CageLocation'].'</span>'.'</a>'.'</li>';
                                   }
                                 }
                             }
@@ -116,6 +133,8 @@
                         </ul>
                     </div>
                 </section>
+            <?php } ?>
+            
             </div>
         </div>
     </div>

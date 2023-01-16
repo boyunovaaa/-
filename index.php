@@ -57,7 +57,7 @@
                                             </ul>
                                         </li>
                                         <li><a href="#contacts">Контакты</a></li>
-                                        <li><a href="autorization.php">Авторизация</a></li>
+                                        <!-- li><a href="autorization.php">Авторизация</a></li -->
                                     </ul>
                                 </nav>
                             </div>

@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/form.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
@@ -71,11 +72,37 @@
         </div>
     </header>
 
-    <form action="" method="POST">
-        <input name="login">
-        <input name="password" type="password">
-        <input type="submit">
-    </form>
+
+    <div class="adapt_area">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-lg-12" style="text-align: center">
+                
+                    <?php
+                        include 'dbconnect.php';
+                        session_start();
+	
+                        if (!empty($_POST['password']) and !empty($_POST['login'])) {
+                            $login = $_POST['login'];
+                            $password = $_POST['password'];
+                            
+                            $query = "SELECT * FROM user WHERE login='$login' AND password='$password'";
+                            $result = mysqli_query($conn, $query);
+                            $user = mysqli_fetch_assoc($result);
+                            
+                            if (!empty($user)) {
+                                $_SESSION['auth'] = true;
+                                echo "good";
+                            } else {
+                                // неверно ввел логин или пароль
+                            }
+                        }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <footer class="footer" id="contacts">
         <div class="footer_top">
@@ -168,6 +195,35 @@
             </div>
         </div>
     </footer>
+
+    <!-- JS here -->
+    <!-- script src="js/vendor/modernizr-3.5.0.min.js"></script -->
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- script src="js/popper.min.js"></script -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <!-- script src="js/ajax-form.js"></script -->
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <!-- script src="js/imagesloaded.pkgd.min.js"></script -->
+    <!-- script src="js/scrollIt.js"></script -->
+    <!-- script src="js/jquery.scrollUp.min.js"></script -->
+    <script src="js/wow.min.js"></script>
+    <!-- script src="js/nice-select.min.js"></script -->
+    <script src="js/jquery.slicknav.min.js"></script>
+    <!-- script src="js/jquery.magnific-popup.min.js"></script -->
+    <!-- script src="js/plugins.js"></script -->
+    <!-- script src="js/gijgo.min.js"></script -->
+
+    <!--contact js-->
+    <!-- script src="js/contact.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/mail-script.js"></script -->
+
+    <script src="js/main.js"></script>
     </body>
 
 </html>

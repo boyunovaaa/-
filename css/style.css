@@ -1445,8 +1445,8 @@ h3 {
   margin-right: auto;
   padding-top: 200px;
   padding-bottom: 50px;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 @media (max-width: 767px) {
