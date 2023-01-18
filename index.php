@@ -49,14 +49,22 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a  href="index.php">Главная</a></li>
-                                        <li><a href="about.html">О зоопарке</a></li>
+                                        <li><a href="about.php">О зоопарке</a></li>
                                         <li><a href="#">Животные <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="blog.php">Список</a></li>
                                                 <li><a href="contact.php">Карта</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#contacts">Контакты</a></li>
+                                        <?php
+                                            session_start();
+                                            if (empty($_SESSION['auth'])) { ?>
+                                                <li><a href="autorization.php">Войти</a></li>
+                                            <?php }
+                                            if (!empty($_SESSION['auth'])){ ?>
+                                                <li><a href="cabinet.php">Личный кабинет</a></li>
+                                            <?php }
+                                        ?>
                                         <!-- li><a href="autorization.php">Авторизация</a></li -->
                                     </ul>
                                 </nav>
@@ -310,7 +318,7 @@
                                 </div>
                             </div>
                             <div class="form-group mt-3">
-                                <button type="submit" class="button button-contactForm boxed-btn">Отправить</button>
+                                <button type="submit" class="button">Отправить</button>
                             </div>
                         </form>
                         <?php

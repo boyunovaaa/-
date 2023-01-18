@@ -15,16 +15,10 @@
     <!-- CSS here -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/themify-icons.css">
-    <link rel="stylesheet" href="css/nice-select.css">
     <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/gijgo.css">
-    <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/form.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
@@ -50,15 +44,23 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a  href="index.php">Главная</a></li>
-                                        <li><a href="about.html">О зоопарке</a></li>
+                                        <li><a href="about.php">О зоопарке</a></li>
                                         <li><a href="#">Животные <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="blog.php">Список</a></li>
                                                 <li><a href="contact.php">Карта</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#contacts">Контакты</a></li>
-                                        <li><a href="autorization.php">Авторизация</a></li>
+                                        <?php
+                                            session_start();
+                                            if (empty($_SESSION['auth'])) { ?>
+                                                <li><a href="autorization.php">Войти</a></li>
+                                            <?php }
+                                            if (!empty($_SESSION['auth'])){ ?>
+                                                <li><a href="cabinet.php">Личный кабинет</a></li>
+                                            <?php }
+                                        ?>
+                                        
                                     </ul>
                                 </nav>
                             </div>
@@ -72,17 +74,22 @@
         </div>
     </header>
 
-
     <div class="adapt_area">
         <div class="container">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-lg-12" style="text-align: center">
-                
-                    <?php
-                        include 'dbconnect.php';
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                <h3 class="footer_title">Авторизация</h3>
+                    <form action="" method="POST">
+                        <p><input name="login" onblur="this.placeholder = 'Введите логин'" placeholder="Логин"></p>
+                        <p><input name="password" type="password" onblur="this.placeholder = 'Введите пароль'" placeholder="Пароль"></p>
+                        <p><input type="submit" value="Войти"></p>
+                        <p>У вас нет аккаунта? <a href="registr.php">Зарегистрируйтесь</a><br>
+                        <?php
                         session_start();
-	
-                        if (!empty($_POST['password']) and !empty($_POST['login'])) {
+                        include 'dbconnect.php';
+                        
+
+                        if (!empty($_POST['password']) && !empty($_POST['login'])) {
                             $login = $_POST['login'];
                             $password = $_POST['password'];
                             
@@ -91,13 +98,17 @@
                             $user = mysqli_fetch_assoc($result);
                             
                             if (!empty($user)) {
-                                $_SESSION['auth'] = true;
-                                echo "good";
+                                $_SESSION['auth'] = $user['id'];
+                                header('Location: cabinet.php');
                             } else {
-                                // неверно ввел логин или пароль
+                                echo "Данные введены неверно";
                             }
                         }
                     ?>
+                    </form>
+
+
+                    
                 </div>
             </div>
         </div>
@@ -108,6 +119,45 @@
         <div class="footer_top">
             <div class="container">
                 <div class="row">
+                    <div class="col-lg-6">
+                        <h3 class="footer_title">Обратная связь</h3>
+                        <form class="form-contact contact_form" action="" method="post" id="contactForm" novalidate="novalidate">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control valid" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите ФИО'" placeholder="ФИО">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control valid" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите email'" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="subject" id="subject" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите тему'" placeholder="Тема">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Напишите сообщение'" placeholder="Сообщение"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <button type="submit" class="button">Отправить</button>
+                            </div>
+                        </form>
+                        <?php
+                        
+                        include "dbconnect.php";
+                        if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message'])){
+                            $query = "INSERT INTO `messages` (`fio`, `email`, `subject`, `message`) VALUES ('{$_POST['name']}', '{$_POST['email']}', '{$_POST['subject']}', '{$_POST['message']}')"; 
+                    
+                            $result = mysqli_query($conn, $query);
+                        }
+                        ?>
+                    </div>
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
                             <h3 class="footer_title">
@@ -195,6 +245,8 @@
             </div>
         </div>
     </footer>
+    <!-- footer_end  -->
+
 
     <!-- JS here -->
     <!-- script src="js/vendor/modernizr-3.5.0.min.js"></script -->
@@ -224,6 +276,6 @@
     <script src="js/mail-script.js"></script -->
 
     <script src="js/main.js"></script>
-    </body>
+</body>
 
 </html>

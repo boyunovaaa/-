@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.png">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
@@ -19,10 +19,8 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/form.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
-
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=949c419f-7cb8-41ba-9e1b-e7c3f69e0086&lang=ru_RU" type="text/javascript">
-    </script>
 </head>
 
 <body>
@@ -30,7 +28,6 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-    <!-- header_start  -->
     <header>
         <div class="header-area ">
             <div id="sticky-header" class="main-header-area">
@@ -64,6 +61,7 @@
                                                 <li><a href="cabinet.php">Личный кабинет</a></li>
                                             <?php }
                                         ?>
+                                        
                                     </ul>
                                 </nav>
                             </div>
@@ -77,227 +75,42 @@
         </div>
     </header>
 
-    <!-- header_start  -->
 
-    <!-- bradcam_area_start -->
-    <div class="bradcam_area breadcam_bg">
+    <div class="adapt_area">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="bradcam_text text-center">
-                        <h3>Карта Московского зоопарка</h3>
-                    </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h3 class="footer_title">Регистрация</h3>
+                    <form action="" method="POST">
+                        <p><input name="login" onblur="this.placeholder = 'Введите логин'" placeholder="Логин"></p>
+                        <p><input name="password" type="password" onblur="this.placeholder = 'Введите пароль'" placeholder="Пароль"></p>
+                        <p><input name="passpassword" type="password" onblur="this.placeholder = 'Подтвердите пароль'" placeholder="Подтверждение пароля"></p>
+                        <p><input type="submit" value="Зарегистрироваться"></p>
+                        <p>У вас уже есть аккаунт? <a href="autorization.php">Авторизуйтесь</a><br>
+                        <?php
+                        include 'dbconnect.php';
+
+                        if (isset($_POST['password']) && isset($_POST['login']) && isset($_POST['passpassword'])) {
+
+                            if($_POST['password'] == $_POST['passpassword']){
+                                $query = "INSERT INTO `user` (`login`, `password`, `rights`) VALUES ('{$_POST['login']}', '{$_POST['password']}', '2')";
+                                $result = mysqli_query($conn, $query);
+                                echo "Вы зарегистрированы";
+                            }
+                            else{
+                                echo "Пароли не совпадают";
+                            }
+                            
+                        }
+                        
+                        ?>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- bradcam_area_end -->
-
-    
-
-    <div class="col-lg-12">
-    <!-- ?php
-    include "dbconnect.php";
-    $sql = mysqli_query($conn, 'SELECT DISTINCT Coo FROM `zoo`');
-
-    while ($result = mysqli_fetch_array($sql)){
-        $arr[] = $result["Coo"];
-
-    }
-
-    print_r($arr);
-    ? -->
-        <div id="map" class="map" style="height: 800px">
-            <script type="text/javascript">
-                // Функция ymaps.ready() будет вызвана, когда
-                // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
-            
-                <?php
-                    $arr1 = [];
-                    $arr2 = [];
-                    include "dbconnect.php";
-                    $sql1 = mysqli_query($conn, 'SELECT DISTINCT Coo1, Coo2, CageLocation FROM `zoo3`;');
-                    while ($result1 = mysqli_fetch_array($sql1)){
-                        $arr1[] = (float)$result1["Coo1"];
-                        $arr2[] = (float)$result1["Coo2"];
-                        $cagelocation[] = $result1["CageLocation"];
-                    }
-                ?>
-
-                var coo1 =JSON.parse('<?=json_encode($arr1)?>');
-
-                var coo2 =JSON.parse('<?=json_encode($arr2)?>');
-
-                var cagelocation =JSON.parse('<?=json_encode($cagelocation)?>');
-
-                var coords=[], i, j;
-                for (i=0; i<42; i++){
-                    coords.push(i);
-                    coords[i] = [];
-                for (j=0; j<1; j++){
-                    coords[i].push(coo1[i], coo2[i]);
-                }
-                }
-
-                <?php
-                if (isset($_GET['coo1']) && isset($_GET['coo2'])){ 
-                    include 'dbconnect.php';
-                    $sql = mysqli_query($conn, 'SELECT CageLocation FROM `zoo3` WHERE Coo1='.$_GET['coo1'].' AND Coo2='.$_GET['coo2'].'');
-                    while ($result = mysqli_fetch_array($sql)){
-                        $CageLocation = $result["CageLocation"];
-                    }?>
-                    var cagelocation =<?php echo $cagelocation; ?>;
-                    console.log(cagelocation);
-                    ymaps.ready(init);
-                    function init(){
-                        var pointA = [55.761173, 37.578433],
-                        pointB = [<?php echo $_GET['coo1'] ?>, <?php echo $_GET['coo2'] ?>],
-                        /**
-                         * Создаем мультимаршрут.
-                         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/multiRouter.MultiRoute.xml
-                         */
-                        multiRoute = new ymaps.multiRouter.MultiRoute({
-                            referencePoints: [
-                                pointA,
-                                pointB
-                            ],
-                            params: {
-                                //Тип маршрутизации - пешеходная маршрутизация.
-                                routingMode: 'pedestrian'
-                            }
-                        }, {
-                            // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
-                            boundsAutoApply: true
-                        });
-
-                        // Создаем кнопку.
-                        var changePointsButton = new ymaps.control.Button({
-                            data: {content: "Поменять местами точки А и В"},
-                            options: {selectOnClick: true}
-                        });
-
-                        // Объявляем обработчики для кнопки.
-                        changePointsButton.events.add('select', function () {
-                            multiRoute.model.setReferencePoints([pointB, pointA]);
-                        });
-
-                        changePointsButton.events.add('deselect', function () {
-                            multiRoute.model.setReferencePoints([pointA, pointB]);
-                        });
-
-                        // Создаем карту с добавленной на нее кнопкой.
-                        var myMap = new ymaps.Map('map', {
-                            center: [55.76323808, 37.58051340],
-                            zoom: 16,
-                            controls: [changePointsButton, 'fullscreenControl']
-                        }, {
-                            buttonMaxWidth: 300
-                        });
-
-                        // Добавляем мультимаршрут на карту.
-                        myMap.geoObjects.add(multiRoute);
-
-                        /*var myMap = new ymaps.Map("map", {
-                            center: [55.76323808, 37.58051340],
-                            zoom: 16
-                        });
-                        var myClusterer = new ymaps.Clusterer();
-                        myPlacemark = new ymaps.Placemark([<!-- ?php echo $_GET['coo1'] ?>, <!-- ?php echo $_GET['coo2'] ?>], {
-                                //balloonContentHeader: $cagelocation[0],
-                                //balloonContentFooter: '<a href="blog.php">Посмотреть животных</a>',
-                                //hintContent: cagelocation[i]
-                        });
-                        myMap.geoObjects.add(myPlacemark);*/
-                    } 
-                <?php } 
-                if (!isset($_GET['coo1']) && !isset($_GET['coo2']) && !isset($_GET['fav'])){ ?>
-                    ymaps.ready(init);
-                    function init(){
-                    var myMap = new ymaps.Map("map", {
-                        center: [55.76323808, 37.58051340],
-                        zoom: 16
-                    });
-                    var myClusterer = new ymaps.Clusterer();
-                    for (var i = 0; i<coords.length; i++) {
-
-                        myPlacemark = new ymaps.Placemark([coords[i][0], coords[i][1]], {
-                            balloonContentHeader: cagelocation[i],
-                            balloonContentFooter: '<a href="blog.php?loc=' + cagelocation[i] + '">Посмотреть животных</a>',
-                            hintContent: cagelocation[i]
-                        });
-                        myMap.geoObjects.add(myPlacemark);
-                        myClusterer.add(myPlacemark);
-                    };
-                    myMap.geoObjects.add(myClusterer);
-                    }
-                <?php }
-                ?>
-                <?php
-                if (isset($_GET['fav'])){ 
-                    $coo1 = [];
-                    $coo2 = [];
-                    include "dbconnect.php";
-                    $fav = mysqli_query($conn, 'SELECT DISTINCT zoo3.Coo1, zoo3.Coo2 FROM ((favorites JOIN zoo2 ON favorites.id_animal=zoo2.id) JOIN zoo3 ON zoo2.NoCageLocation=zoo3.id) WHERE favorites.id_user="'.$_SESSION['auth'].'"');
-                    while ($favres = mysqli_fetch_array($fav)){
-                        $coo1[] = (string)$favres["Coo1"];
-                        $coo2[] = (string)$favres["Coo2"];
-                    }
-                    ?>
-
-                    var fav1 =JSON.parse('<?=json_encode($coo1)?>');
-
-                    var fav2 =JSON.parse('<?=json_encode($coo2)?>');
 
 
-                    var favs=[];
-                    favs[0]="55.761173, 37.578433";
-                    for (i=1; i<fav1.length+1; i++){
-                        favs[i]=fav1[i-1] + ', ' + fav2[i-1];
-                    }
-                    console.log(favs);
-
-                    function init () {
-                        // Создаем мультимаршрут.
-                        var multiRoute = new ymaps.multiRouter.MultiRoute({
-                            referencePoints: favs,
-                            params: {
-                                routingMode: 'pedestrian'
-                            }
-                        });
-                        
-                        ymaps.modules.require([
-                            'MultiRouteColorizer'
-                        ], function (MultiRouteColorizer) {
-                            // Создаем объект, раскрашивающий линии сегментов маршрута.
-                            new MultiRouteColorizer(multiRoute);
-                        });
-                    
-                        // Создаем карту.
-                        var myMap = new ymaps.Map('map', {
-                            center: [55.76323808, 37.58051340],
-                            zoom: 16,
-                            controls: ['fullscreenControl']
-                        }, {
-                            buttonMaxWidth: 300
-                        });
-                    
-                        // Добавляем мультимаршрут на карту.
-                        myMap.geoObjects.add(multiRoute);
-                    }
-                    
-                    ymaps.ready(init);
-                    
-                <?php
-                }
-                ?>
-
-                
-                
-            </script>
-        </div>
-    </div>
-    
-    <!-- footer_start  -->
     <footer class="footer" id="contacts">
         <div class="footer_top">
             <div class="container">
