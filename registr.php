@@ -93,9 +93,17 @@
                         if (isset($_POST['password']) && isset($_POST['login']) && isset($_POST['passpassword'])) {
 
                             if($_POST['password'] == $_POST['passpassword']){
-                                $query = "INSERT INTO `user` (`login`, `password`, `rights`) VALUES ('{$_POST['login']}', '{$_POST['password']}', '2')";
-                                $result = mysqli_query($conn, $query);
-                                echo "Вы зарегистрированы";
+                                $login = $_POST['login'];
+                                $query = "SELECT * FROM user WHERE login='$login'";
+		                        $user = mysqli_fetch_assoc(mysqli_query($conn, $query));
+                                if (empty($user)) {
+                                    $query = "INSERT INTO `user` (`login`, `password`, `rights`) VALUES ('{$_POST['login']}', '{$_POST['password']}', '2')";
+                                    $result = mysqli_query($conn, $query);
+                                    echo "Вы зарегистрированы";
+                                }
+                                else{
+                                    echo "Логин занят";
+                                }
                             }
                             else{
                                 echo "Пароли не совпадают";

@@ -50,7 +50,7 @@
                                     <ul id="navigation">
                                         <li><a  href="index.php">Главная</a></li>
                                         <li><a href="about.php">О зоопарке</a></li>
-                                        <li><a href="#">Животные <i class="ti-angle-down"></i></a>
+                                        <li><a href="#">Животные</a>
                                             <ul class="submenu">
                                                 <li><a href="blog.php">Список</a></li>
                                                 <li><a href="contact.php">Карта</a></li>
@@ -110,7 +110,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="single_service">
                          <div class="service_thumb d-flex align-items-center justify-content-center">
                              <div class="service_icon">
@@ -119,8 +119,7 @@
                          </div>
                          <div class="service_content text-center">
                             <h3>Узнать, какие животные представлены в Московском зоопарке</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                         </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -132,8 +131,7 @@
                          </div>
                          <div class="service_content text-center">
                             <h3>Посмотреть, где находятся понравившиеся животные</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                         </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -145,8 +143,7 @@
                          </div>
                          <div class="service_content text-center">
                             <h3>Проложить удобный маршрут для прогулки по зоопарку</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                         </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -241,51 +238,7 @@
     </div>
     <!-- adapt_area_end  -->
 
-    <!-- testmonial_area_start  -->
-    <div class="testmonial_area">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="textmonial_active owl-carousel">
-                        <div class="testmonial_wrap">
-                            <div class="single_testmonial d-flex align-items-center">
-                                <div class="test_thumb">
-                                    <img src="img/testmonial/1.jpg" alt="">
-                                </div>
-                                <div class="test_content">
-                                    <h4>Енотовидная собака Буба уснула в персональном вольере</h4><br>
-                                    <p>Новая территория адаптирована под нужды Бубы. Енотовидные собаки, в отличие от енотов, очень плохо лазают, поэтому все обогащение среды здесь ориентировано на нижний ярус. Сам вольер надежно укрыт от осадков. К тому же там для Бубы предусмотрен личный домик, где ей никто не будет мешать спать. Сам вольер находится на внутренней уличной территории сектора «Фауна России» – одновременно под крышей и на открытом воздухе.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testmonial_wrap">
-                            <div class="single_testmonial d-flex align-items-center">
-                                <div class="test_thumb">
-                                    <img src="img/testmonial/2.jpg" alt="">
-                                </div>
-                                <div class="test_content">
-                                    <h4>В Московском зоопарке уснули еноты</h4><br>
-                                    <p>Такого-то декабря группа енотов Московского зоопарка погрузилась в зимний сон. Этому способствовала стабильно низкая температура, а также в целом погода, которая в дикой природе затрудняет поиск и сбор корма. Дата засыпания примерна и варьируется в пределах нескольких дней. В начале декабря зоологи отметили, что следы появляются в вольере все реже, а его обитатели все больше времени проводят в своих утепленных домиках.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testmonial_wrap">
-                            <div class="single_testmonial d-flex align-items-center">
-                                <div class="test_thumb">
-                                    <img src="img/testmonial/3.jpg" alt="">
-                                </div>
-                                <div class="test_content">
-                                    <h4>В центре реабилитации рукокрылых Московского зоопарка рекордное количество летучих мышей</h4><br>
-                                    <p>На днях в Центр реабилитации рукокрылых попала рекордная – 200-я мышь. Два двухцветных кожана - самец и самка - вместе были найдены в обычной жилой квартире. Они попали в детскую, подготовленную для ожидаемого малыша. Будущие родители были сильно напуганы - к ним на помощь примчались сотрудники «СпасРезерва», с которыми зоопарк давно сотрудничает. </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- testmonial_area_end  -->
+    
 
     <!-- footer_start  -->
     <footer class="footer" id="contacts">
