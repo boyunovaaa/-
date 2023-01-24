@@ -8,31 +8,14 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
-    <!-- Place favicon.ico in the root directory -->
-
-    <!-- CSS here -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/themify-icons.css">
-    <link rel="stylesheet" href="css/nice-select.css">
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/gijgo.css">
-    <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
-    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
 </head>
 
 <body>
-    <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
-
-    <!-- header_start  -->
     <header>
         <div class="header-area ">
             <div id="sticky-header" class="main-header-area">
@@ -110,7 +93,7 @@
                                 
                                 while ($result = mysqli_fetch_array($sql)) {
                                     //echo '<li>'.'<a class="product-card" href="contact.php?coo1='.$result['Coo1'].'&coo2='.$result['Coo2'].'">'.'<img src="img/animals/'.$result['Kind'].'.jpg" width="156" height="180">'.'<h3>'.$result['Kind'].'</h3>'.'<span class="price">'.$result['CageLocation'].'</span>'.'</a>'.'</li>';
-                                    echo '<li>'.'<a class="product-card" href="animal.php?kind='.$result['Kind'].'">'.'<img src="img/animals/'.$result['Kind'].'.jpg" width="156" height="180">'.'<h3>'.$result['Kind'].'</h3>'.'<span class="price">'.$result['CageLocation'].'</span>'.'</a>'.'</li>';
+                                    echo '<li>'.'<a class="product-card" href="animal.php?kind='.$result['Kind'].'">'.'<img src="img/animals/'.$result['Kind'].'.jpg" width="156" height="180">'.'<h5 style="color: black;">'.$result['Kind'].'</h5>'.'<span class="price">'.$result['CageLocation'].'</span>'.'</a>'.'</li>';
                                     $count=1;
                                 }
                                 if($count==0){
@@ -182,34 +165,6 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- div class="col-xl-3  col-md-6 col-lg-3">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Our Servces
-                            </h3>
-                            <ul class="links">
-                                <li><a href="#">Pet Insurance</a></li>
-                                <li><a href="#">Pet surgeries </a></li>
-                                <li><a href="#">Pet Adoption</a></li>
-                                <li><a href="#">Dog Insurance</a></li>
-                                <li><a href="#">Dog Insurance</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-3  col-md-6 col-lg-3">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Quick Link
-                            </h3>
-                            <ul class="links">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Terms of Service</a></li>
-                                <li><a href="#">Login info</a></li>
-                                <li><a href="#">Knowledge Base</a></li>
-                            </ul>
-                        </div>
-                    </div -->
                     <div class="col-xl-3 col-md-6 col-lg-3 ">
                         <div class="footer_widget">
                             <div class="footer_logo">
@@ -248,45 +203,23 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <p class="copy_right text-center">
-                            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                            <p>
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+                            </p>
+                            <p>
+                                Для создания приложения были использованы открытые данные с сайта https://data.mos.ru/ <br>
+
+                                Источник: https://data.mos.ru/opendata/3286
+                            </p>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <!-- footer_end  -->
 
-
-    <!-- JS here -->
-    <!-- script src="js/vendor/modernizr-3.5.0.min.js"></script -->
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
-    <!-- script src="js/popper.min.js"></script -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/isotope.pkgd.min.js"></script>
-    <!-- script src="js/ajax-form.js"></script -->
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <!-- script src="js/imagesloaded.pkgd.min.js"></script -->
-    <!-- script src="js/scrollIt.js"></script -->
-    <!-- script src="js/jquery.scrollUp.min.js"></script -->
-    <script src="js/wow.min.js"></script>
-    <!-- script src="js/nice-select.min.js"></script -->
     <script src="js/jquery.slicknav.min.js"></script>
-    <!-- script src="js/jquery.magnific-popup.min.js"></script -->
-    <!-- script src="js/plugins.js"></script -->
-    <!-- script src="js/gijgo.min.js"></script -->
-
-    <!--contact js-->
-    <!-- script src="js/contact.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.form.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/mail-script.js"></script -->
-
     <script src="js/main.js"></script>
 </body>
 
