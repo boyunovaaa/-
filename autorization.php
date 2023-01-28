@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
 </head>
 
@@ -36,7 +35,7 @@
                                         <li><a href="about.php">О зоопарке</a></li>
                                         <li><a href="#">Животные <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="blog.php">Список</a></li>
+                                                <li><a href="animals.php">Список</a></li>
                                                 <li><a href="contact.php">Карта</a></li>
                                             </ul>
                                         </li>
@@ -74,26 +73,26 @@
                         <p><input type="submit" value="Войти"></p>
                         <p>У вас нет аккаунта? <a href="registr.php">Зарегистрируйтесь</a><br>
                         <?php
-                        session_start();
-                        include 'dbconnect.php';
-                        
+                            session_start();
+                            include 'dbconnect.php';
+                            
 
-                        if (!empty($_POST['password']) && !empty($_POST['login'])) {
-                            $login = $_POST['login'];
-                            $password = $_POST['password'];
-                            
-                            $query = "SELECT * FROM user WHERE login='$login' AND password='$password'";
-                            $result = mysqli_query($conn, $query);
-                            $user = mysqli_fetch_assoc($result);
-                            
-                            if (!empty($user)) {
-                                $_SESSION['auth'] = $user['id'];
-                                header('Location: cabinet.php');
-                            } else {
-                                echo "Данные введены неверно";
+                            if (!empty($_POST['password']) && !empty($_POST['login'])) {
+                                $login = $_POST['login'];
+                                $password = $_POST['password'];
+                                
+                                $query = "SELECT * FROM user WHERE login='$login' AND password='$password'";
+                                $result = mysqli_query($conn, $query);
+                                $user = mysqli_fetch_assoc($result);
+                                
+                                if (!empty($user)) {
+                                    $_SESSION['auth'] = $user['id'];
+                                    header('Location: cabinet.php');
+                                } else {
+                                    echo "Данные введены неверно";
+                                }
                             }
-                        }
-                    ?>
+                        ?>
                     </form>
 
 
@@ -211,6 +210,7 @@
             </div>
         </div>
     </footer>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/jquery.slicknav.min.js"></script>

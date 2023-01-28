@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
 </head>
 
@@ -39,7 +38,7 @@
                                         <li><a href="about.php">О зоопарке</a></li>
                                         <li><a href="#">Животные <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="blog.php">Список</a></li>
+                                                <li><a href="animals.php">Список</a></li>
                                                 <li><a href="contact.php">Карта</a></li>
                                             </ul>
                                         </li>
@@ -99,8 +98,9 @@
                                 echo '<img src="img/animals/'.$result['Kind'].'.jpg" width="217" height="250"><br><h3>Павильон: '.$result['CageLocation'].'</h3><br><a href="contact.php?coo1='.$result['Coo1'].'&coo2='.$result['Coo2'].'" style="font-size: 25px;">Показать на карте</a><br><h5 align="justify" style="padding-top: 40px;">'.$result['Info'].'</h5><br>';
                             }
                             if (!empty($_SESSION['auth'])){
-                                if(($count == 0) && (!isset($_GET['fav'])) && (!isset($_GET['del']))){
-                                    $sql=mysqli_query($conn, 'SELECT id_animal FROM favorites JOIN zoo2 ON favorites.id_animal=zoo2.id WHERE zoo2.Kind="'.$_GET['kind'].'" AND favorites.id_user="'.$_SESSION['auth'].'";');
+                                if((!isset($_GET['fav'])) && (!isset($_GET['del']))){
+                                    $sql=mysqli_query($conn, 'SELECT id_animal FROM favorites JOIN zoo2 ON favorites.id_animal=zoo2.id 
+                                    WHERE zoo2.Kind="'.$_GET['kind'].'" AND favorites.id_user="'.$_SESSION['auth'].'";');
                                     $res = mysqli_fetch_array($sql);
                                     if (isset($res)){
                                         echo '<img src="img/animals/'.$result['Kind'].'.jpg" width="217" height="250"><br><h3>Павильон: '.$result['CageLocation'].'</h3><br><a href="contact.php?coo1='.$result['Coo1'].'&coo2='.$result['Coo2'].'" style="font-size: 25px;">Показать на карте</a><br><h4>Добавлено в избранное</h4><br><a href="animal.php?kind='.$result['Kind'].'&del=1" style="font-size: 25px;">Удалить из избранного</a><br><h5 align="justify" style="padding-top: 40px;">'.$result['Info'].'</h5><br>';
@@ -236,6 +236,8 @@
             </div>
         </div>
     </footer>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/jquery.slicknav.min.js"></script>

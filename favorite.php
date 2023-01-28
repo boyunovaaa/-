@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
 </head>
 
@@ -36,7 +35,7 @@
                                         <li><a href="about.php">О зоопарке</a></li>
                                         <li><a href="#">Животные <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="blog.php">Список</a></li>
+                                                <li><a href="animals.php">Список</a></li>
                                                 <li><a href="contact.php">Карта</a></li>
                                             </ul>
                                         </li>
@@ -83,7 +82,7 @@
                 <section class="catalog">
                     <div class="container2">
                         <?php
-                            echo '<a href="contact.php?fav=1" style="font-size: 25px;">Маршрут по избранным животным</a><br>';
+                            echo '<a style="text-decoration: none; font-size: 25px;" href="contact.php?fav=1" style="font-size: 25px;">Маршрут по избранным животным</a><br>';
                         ?>
                         <ul class="products-list">
                             <?php 
@@ -93,7 +92,7 @@
                                 
                                 while ($result = mysqli_fetch_array($sql)) {
                                     //echo '<li>'.'<a class="product-card" href="contact.php?coo1='.$result['Coo1'].'&coo2='.$result['Coo2'].'">'.'<img src="img/animals/'.$result['Kind'].'.jpg" width="156" height="180">'.'<h3>'.$result['Kind'].'</h3>'.'<span class="price">'.$result['CageLocation'].'</span>'.'</a>'.'</li>';
-                                    echo '<li>'.'<a class="product-card" href="animal.php?kind='.$result['Kind'].'">'.'<img src="img/animals/'.$result['Kind'].'.jpg" width="156" height="180">'.'<h5 style="color: black;">'.$result['Kind'].'</h5>'.'<span class="price">'.$result['CageLocation'].'</span>'.'</a>'.'</li>';
+                                    echo '<li>'.'<a style="text-decoration: none;" class="product-card" href="animal.php?kind='.$result['Kind'].'">'.'<img src="img/animals/'.$result['Kind'].'.jpg" width="156" height="180">'.'<h5 style="color: black;">'.$result['Kind'].'</h5>'.'<span class="price">'.$result['CageLocation'].'</span>'.'</a>'.'</li>';
                                     $count=1;
                                 }
                                 if($count==0){
@@ -217,6 +216,7 @@
             </div>
         </div>
     </footer>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/jquery.slicknav.min.js"></script>

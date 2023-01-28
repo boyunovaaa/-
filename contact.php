@@ -11,10 +11,8 @@
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=949c419f-7cb8-41ba-9e1b-e7c3f69e0086&lang=ru_RU" type="text/javascript">
-    </script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=949c419f-7cb8-41ba-9e1b-e7c3f69e0086&lang=ru_RU" type="text/javascript"></script>
 </head>
 
 <body>
@@ -38,7 +36,7 @@
                                         <li><a href="about.php">О зоопарке</a></li>
                                         <li><a href="#">Животные <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="blog.php">Список</a></li>
+                                                <li><a href="animals.php">Список</a></li>
                                                 <li><a href="contact.php">Карта</a></li>
                                             </ul>
                                         </li>
@@ -206,7 +204,7 @@
 
                         myPlacemark = new ymaps.Placemark([coords[i][0], coords[i][1]], {
                             balloonContentHeader: cagelocation[i],
-                            balloonContentFooter: '<a href="blog.php?loc=' + cagelocation[i] + '">Посмотреть животных</a>',
+                            balloonContentFooter: '<a href="animals.php?loc=' + cagelocation[i] + '">Посмотреть животных</a>',
                             hintContent: cagelocation[i]
                         });
                         myMap.geoObjects.add(myPlacemark);
@@ -389,6 +387,7 @@
             </div>
         </div>
     </footer>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/jquery.slicknav.min.js"></script>

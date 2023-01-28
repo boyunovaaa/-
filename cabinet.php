@@ -14,7 +14,6 @@ session_start();
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
 </head>
 
@@ -39,7 +38,7 @@ session_start();
                                         <li><a href="about.php">О зоопарке</a></li>
                                         <li><a href="#">Животные <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="blog.php">Список</a></li>
+                                                <li><a href="animals.php">Список</a></li>
                                                 <li><a href="contact.php">Карта</a></li>
                                             </ul>
                                         </li>
@@ -98,8 +97,9 @@ session_start();
 
         echo '<div class="row justify-content-center"><div class="col-lg-10"><table border="3px" bordercolor = "black" bgcolor = "white" width = "500" align="center" class="table" id = "achieve">';
         $sql = mysqli_query($conn, 'SELECT * FROM messages');
+        echo '<tr>'.'<td><b>ФИО</b></td>'.'<td><b>Email</b></td>'.'<td><b>Тема</b></td>'.'<td><b>Сообщение</b></td>'.'</tr>';
         while ($result = mysqli_fetch_array($sql)) {
-        echo '<tr>'.'<td>'. $result['fio'].'</td>'.'<td>'. $result['email'].'</td>'.'<td>'. $result['subject'].'</td>'.'<td>'. $result['message'].'</td>'.'</tr>';
+        echo '<tr>'.'<td>'. $result['fio'].'</td>'.'<td>'. $result['email'].'</td>'.'<td>'. $result['subject'].'</td>'.'<td width = "400">'. $result['message'].'</td>'.'</tr>';
         }
         echo '</table></div></div>';
     }
@@ -253,6 +253,7 @@ session_start();
             </div>
         </div>
     </footer>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/jquery.slicknav.min.js"></script>
